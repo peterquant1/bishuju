@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>币安USDT永续合约排行榜</title>
+    <link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>币安 USDT永续合约 排行榜</h1>
+            <div class="update-time" id="updateTime">数据加载中...</div>
+        </header>
+
+        <nav class="tabs" id="tabs">
+            <button class="tab active" data-tab="yesterdayChange">昨天涨跌幅</button>
+            <button class="tab" data-tab="yesterdayVolume">收盘日线成交额</button>
+            <button class="tab" data-tab="weeklyVolume">上周成交量</button>
+            <button class="tab" data-tab="fundingRate">资金费率</button>
+            <button class="tab" data-tab="weeklyRsi">收盘周线RSI</button>
+            <button class="tab" data-tab="rsiMomentum">RSI动能递增</button>
+        </nav>
+
+        <div class="export-bar" id="exportBar" style="display:none;">
+            <span id="selectedCount">已选 0 个</span>
+            <button id="selectAllBtn">全选</button>
+            <button id="exportBtn">导出TradingView TXT</button>
+        </div>
+
+        <div class="table-container">
+            <table id="rankTable">
+                <thead>
+                    <tr>
+                        <th class="col-check"><input type="checkbox" id="checkAll"></th>
+                        <th class="col-rank">#</th>
+                        <th class="col-symbol">币种</th>
+                        <th class="col-value" id="valueHeader">涨幅</th>
+                    </tr>
+                </thead>
+                <tbody id="rankBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js?v=7"></script>
+</body>
+</html>
