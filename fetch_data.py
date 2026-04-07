@@ -303,27 +303,35 @@ def build_rankings(symbols, yesterday_data, weekly_data, funding_data, rsi_data,
     ]
     funding_list.sort(key=lambda x: x["value"], reverse=True)
 
+    # 收盘周线RSI - 仅显示递增的，按USDT成交额排序
     weekly_rsi = [
         {
             "symbol": rename_symbol(s),
-            "value": v["rsiCurr"],
+            "value": yesterday_data[s]["volume"],
+            "valueFormatted": format_volume(yesterday_data[s]["volume"]),
+            "rsiCurr": v["rsiCurr"],
             "rsiPrev": v["rsiPrev"],
-            "trend": "up" if v["rsiCurr"] > v["rsiPrev"] else "down",
         }
         for s, v in rsi_data.items()
         if s in valid_symbols
+        and v["rsiCurr"] > v["rsiPrev"]
+        and s in yesterday_data
     ]
     weekly_rsi.sort(key=lambda x: x["value"], reverse=True)
 
+    # 收盘月线RSI - 仅显示递增的，按USDT成交额排序
     monthly_rsi = [
         {
             "symbol": rename_symbol(s),
-            "value": v["rsiCurr"],
+            "value": yesterday_data[s]["volume"],
+            "valueFormatted": format_volume(yesterday_data[s]["volume"]),
+            "rsiCurr": v["rsiCurr"],
             "rsiPrev": v["rsiPrev"],
-            "trend": "up" if v["rsiCurr"] > v["rsiPrev"] else "down",
         }
         for s, v in monthly_rsi_data.items()
         if s in valid_symbols
+        and v["rsiCurr"] > v["rsiPrev"]
+        and s in yesterday_data
     ]
     monthly_rsi.sort(key=lambda x: x["value"], reverse=True)
 
